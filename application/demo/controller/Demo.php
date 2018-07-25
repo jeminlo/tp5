@@ -8,10 +8,13 @@
 
 namespace app\demo\controller;
 
+use think\Controller;
+use think\Db;
 
-class Demo
+class Demo extends controller
 {
     public function index(){
-        return __METHOD__;
+        return Db::query('select * from google_news ')->find();
+
     }
 }
