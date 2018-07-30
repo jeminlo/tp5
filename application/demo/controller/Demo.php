@@ -14,7 +14,13 @@ use think\Db;
 class Demo extends controller
 {
     public function index(){
-        return Db::query('select * from google_news ')->find();
-
+        $data = [
+            ['title'=>rand(1,9999),'href'=>'text',1=>0],
+            ['title'=>rand(1,9999),'href'=>'text',1=>0]
+        ];
+        $res = Db::name('google_news')->strict(false)->limit(100)->insertAll($data);
+        dump($res);
     }
+
+
 }
