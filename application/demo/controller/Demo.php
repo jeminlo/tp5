@@ -8,17 +8,19 @@
 
 namespace app\demo\controller;
 
+use app\demo\model\CircleOrderingLog;
+use app\demo\model\GoogleNews;
 use think\Controller;
-use think\Db;
+
 
 class Demo extends controller
 {
-    public function index(){
-        $data = [
-            ['title'=>rand(1,9999),'href'=>'text',1=>0],
-            ['title'=>rand(1,9999),'href'=>'text',1=>0]
-        ];
-        $res = Db::name('google_news')->strict(false)->limit(100)->insertAll($data);
+    public function index()
+    {
+        $res = CircleOrderingLog::find();
+//        $res->content = ['status'=>1,'time'=>time()] ;
+//        echo $res->content->status;
+//        $res->save();
         dump($res);
     }
 
