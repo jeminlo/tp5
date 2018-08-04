@@ -21,7 +21,7 @@ class Demo extends controller
 //        $res->content = ['status'=>1,'time'=>time()] ;
 //        echo $res->content->status;
 //        $res->save();
-        dump($res);
+//        dump($res);
     }
 
 
