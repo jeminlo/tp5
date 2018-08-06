@@ -17,15 +17,9 @@ class Demo extends controller
 {
     public function index()
     {
-        $res = CircleOrderingLog::where(['id','>',100])->select()->limit(2);
+        $res = CircleOrderingLog::where(['id', '>', 100])->select()->limit(2);
 //        $res->content = ['status'=>1,'time'=>time()] ;
 //        echo $res->content->status;
 //        $res->save();
         dump($res);
-
-
-
     }
-
-
-}
