@@ -17,7 +17,7 @@ class Demo extends controller
 {
     public function index()
     {
-        $res = CircleOrderingLog::where('id','=',60000)->select();
+        $res = CircleOrderingLog::where('id','>',60000)->buildSql();
 //        $res->content = ['status'=>1,'time'=>time()] ;
 //        echo $res->content->status;
 //        $res->save();
