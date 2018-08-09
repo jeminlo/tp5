@@ -8,19 +8,19 @@
 
 namespace app\demo\controller;
 
-use app\demo\model\CircleOrderingLog;
-use app\demo\model\GoogleNews;
 use think\Controller;
 
-
-class Demo extends controller
+class Demo extends Controller
 {
-    public function index()
+    public function index(\app\common\Temp $temp)
     {
-        $res = CircleOrderingLog::where('id','>',60000)->buildSql();
-//        $res->content = ['status'=>1,'time'=>time()] ;
-//        echo $res->content->status;
-//        $res->save();
-        dump($res);
+        return $temp->getName();
+//        return '';
+    }
+    public function BindClass(){
+        \think\Container::set('temp','\app\common\Temp');
+
+        $temp = \think\Container::get('temp',['name'=>'is you']);
+        dump($temp->getName());
     }
 }
