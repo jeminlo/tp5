@@ -9,6 +9,7 @@
 namespace app\demo\controller;
 
 use think\Controller;
+use think\Container;
 
 class Demo extends Controller
 {
@@ -20,18 +21,18 @@ class Demo extends Controller
 
     public function bindClass()
     {
-        \think\Container::set('temp', '\app\common\Temp');
+        Container::set('temp', '\app\common\Temp');
 
-        $temp = \think\Container::get('temp', ['name' => 'is you']);
+        $temp = Container::get('temp', ['name' => 'is you']);
         dump($temp->getName());
     }
 
     public function bindClosure()
     {
-        \think\Container::set('demoClosure',function(){
+        Container::set('demoClosure',function(){
             return 'is 闭包';
         });
-        return \think\Container::get('demoClosure');
+        return Container::get('demoClosure');
 
     }
 }
