@@ -8,19 +8,29 @@
 
 namespace app\demo\controller;
 
-use app\demo\model\CircleOrderingLog;
-use app\demo\model\GoogleNews;
 use think\Controller;
-
+use app\facade\User AS ValidateUser;
 
 class Demo extends controller
 {
+    // 是否批量验证
+
     public function index()
     {
-        $res = CircleOrderingLog::where('id','>',60000)->buildSql();
-//        $res->content = ['status'=>1,'time'=>time()] ;
-//        echo $res->content->status;
-//        $res->save();
-        dump($res);
+        $data = [
+//            'name' => 'Peter',
+//            'email' => 'peter@php.cn',
+            'password' => '123adc',
+            'mobile' => '13745678912',
+        ];
+        if (!ValidateUser::check($data)) {
+            return ValidateUser::getError();
+        } else {
+            return '验证通过';
+        }
+//        $result = $this->validate($data, '\app\validate\User');
+//        if (true !== $result){
+//            dump($result);
+//        }
     }
 }
