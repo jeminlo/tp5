@@ -6,6 +6,7 @@
 namespace app\common\controller;
 
 use think\Controller;
+use think\Facade\Session;
 
 class Base extends Controller
 {
@@ -17,4 +18,10 @@ class Base extends Controller
     {
     }
 
+    public function isLogin()
+    {
+        if (Session::has('user_id')){
+            $this->error('你已经登录','index/index/index');
+        }
+    }
 }
