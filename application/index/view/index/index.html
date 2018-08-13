@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{$title|default='默认标题'}</title>
-    {load href="__STATIC__/css/bootstrap.min.css" /}
-    {load href="__STATIC__/js/jquery-3.3.1.min.js" /}
-    {load href="__STATIC__/js/bootstrap.min.js" /}
-</head>
-<body>
-{$name}
-{__URL__}
-</body>
-</html>
+{include file="public::header"/}
+    <div class="row">
+        <div class="col-md-12">
+            <!-- 导航 -->
+            {include file="public/nav" /}
+            <!--结束导航-->
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="page-header">
+                        <h2>全部问答</h2>
+                    </div>
+                </div>
+                {include file="public/right"/}
+            </div>
+        </div>
+    </div>
+{include file="public/footer" /}

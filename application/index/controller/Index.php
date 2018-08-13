@@ -1,14 +1,14 @@
 <?php
 namespace app\index\controller;
 
-use think\Controller;
+use app\common\controller\Base;
 
-class Index extends Controller
+class Index extends Base
 {
     public function index()
     {
         $this->view->assign('name','me');
-        $this->view->fetch('index');
+        return $this->view->fetch();
     }
 
 }
