@@ -18,10 +18,25 @@ class Base extends Controller
     {
     }
 
+    /**
+     * 是否登录
+     */
     public function isLogin()
     {
-        if (Session::has('user_id')){
-            $this->error('你已经登录','index/index/index');
+        if (Session::has('user_id')) {
+            $this->error('你已经登录', 'index/index/index');
         }
     }
+
+    /**
+     * 是否未登录
+     */
+    public function isLogout()
+    {
+        if (!Session::has('user_id')) {
+            $this->error('你尚未登陆', 'user/login');
+        }
+    }
+
+
 }
