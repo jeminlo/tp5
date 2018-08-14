@@ -37,6 +37,9 @@ class User extends Base
             $data = Request::except('password_confirm', 'post');
             $is_insert = UserModel::create($data);
             if ($is_insert) {
+                $user_data = UserModel::get($is_insert->id);
+                Session::set('user_id', $user_data->id);
+                Session::set('user_name', $user_data->name);
                 return ['status' => 1, 'message' => '注册成功'];
             } else {
                 return ['status' => 0, 'message' => '注册失败'];
