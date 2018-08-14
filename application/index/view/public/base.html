@@ -1,17 +1,23 @@
-{include file="public::header"/}
-<div class="row">
-    <div class="col-md-12">
-        <!-- 导航 -->
-        {include file="public/nav" /}
-        <!--结束导航-->
-        <div class="row">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{$title|default='社区问答'}</title>
+    {block name="include"}{include file="public:header" /}{/block}</head>
+<body>
+{block name="body"}
+    <div class="container">
+        <div class="col-dm-12">
+            {block name="menu"}
+            <!-- 导航 -->
+            {include file="public/nav" /}
+            {/block}
             <div class="col-md-8">
-                <div class="page-header">
-                    {block name="body"}{/block}
-                </div>
+                {block name="main"}{/block}
             </div>
-            {include file="public/right"/}
+            {block name="right"} {include file="public/right"/}{/block}
         </div>
     </div>
-</div>
-{include file="public/footer" /}
+    {block name="footer"}{include file="public/footer" /}{/block}
+{/block}
+</body>
+</html>

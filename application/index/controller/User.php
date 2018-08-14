@@ -50,6 +50,7 @@ class User extends Base
     public function login()
     {
         $this->isLogin();
+        $this->assign('title', 'Login');
         return $this->view->fetch('login', ['title', '用户登录']);
     }
 
