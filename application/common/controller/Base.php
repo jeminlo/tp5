@@ -5,6 +5,7 @@
 
 namespace app\common\controller;
 
+use app\common\model\ArticleCategory;
 use think\Controller;
 use think\Facade\Session;
 
@@ -16,6 +17,7 @@ class Base extends Controller
      */
     protected function initialize()
     {
+        $this->showNav();
     }
 
     /**
@@ -38,5 +40,15 @@ class Base extends Controller
         }
     }
 
+    /**
+     * 显示导航
+     */
+    protected function showNav()
+    {
+        $cateList = ArticleCategory::all(function ($query){
+           $query->where('status', 1)->order('sort', 'asc');
+        });
+        $this->view->assign('cateList', $cateList);
+    }
 
 }
