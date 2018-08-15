@@ -5,6 +5,7 @@ namespace app\index\controller;
 use app\common\controller\Base;
 use app\common\model\Article;
 use app\common\model\ArticleCategory;
+use phpDocumentor\Reflection\Types\This;
 use think\Db;
 use think\facade\Request;
 use think\facade\Session;
@@ -32,7 +33,7 @@ class Index extends Base
             $db_where[] = ['title', 'like', "%$search%"];
         }
         $artList = Article::where($db_where)
-                ->order('create_time', 'desc')->paginate(3);
+            ->order('create_time', 'desc')->paginate(3);
         $this->view->assign('artList', $artList);
         $this->view->assign('empty', '<p>没有文章</p>');
         return $this->view->fetch();
@@ -46,7 +47,7 @@ class Index extends Base
         //2.设置页面标题
         $this->view->assign('title', '发布文章');
         //获取栏目信息
-        $cateList = ArticleCategory::all(function ($query){
+        $cateList = ArticleCategory::all(function ($query) {
             $query->where('status', 1)->order('sort', 'asc');
         });
 
@@ -88,6 +89,21 @@ class Index extends Base
                 $this->error('文章发布失败');
             }
         }
+    }
+
+    /**
+     * 显示文章详情页
+     */
+    public function detail()
+    {
+
+        $id = Request::param('id');
+        $art = Article::where('id', $id)->find();
+        $art->setInc('pv');
+        $this->view->assign('title', $art->articleCategory->name);
+        $this->view->assign('art', $art);
+        return $this->view->fetch();
+
     }
 
 }

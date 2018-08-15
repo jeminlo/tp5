@@ -25,4 +25,9 @@ class Article extends Model
     {
         return $this->belongsTo('User');
     }
+
+    public function articleCategory()
+    {
+        return $this->belongsTo('ArticleCategory', 'cate_id');
+    }
 }
