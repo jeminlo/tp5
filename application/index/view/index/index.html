@@ -11,8 +11,8 @@
         </div>
         <div class="col-md-10">
             <h4><a href="{:url('detail', ['id' => $art.id])}">{$art.title}</a></h4>
-            <p>发布者:{$art.user.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                发布时间:{$art.create_time}&nbsp;&nbsp;&nbsp;&nbsp;
+            <p>作者:{$art.user.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                时间:{$art.create_time}&nbsp;&nbsp;&nbsp;&nbsp;
                 阅读量:{$art.pv}&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
             <div>{$art.content|mb_substr=0,50,'utf-8'}</div>

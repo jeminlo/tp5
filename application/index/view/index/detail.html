@@ -1,18 +1,76 @@
 {extend name="public:base" /}
 {block name="main"}
 <div class="page-header">
-    <h2>{$title|default=''}</h2>
+    <h2>{$category_name|default=''}</h2>
 </div>
 <div class="row">
     <div class="row col-md-12">
         <div class="text-center">
             <h4><a href="{:url('detail', ['id' => $art.id])}">{$art.title}</a></h4>
-            <p>发布者:{$art.user.name}&nbsp;&nbsp;&nbsp;&nbsp;
-                发布时间:{$art.create_time}&nbsp;&nbsp;&nbsp;&nbsp;
+            <p>作者:{$art.user.name}&nbsp;&nbsp;&nbsp;&nbsp;
+                时间:{$art.create_time}&nbsp;&nbsp;&nbsp;&nbsp;
                 阅读量:{$art.pv}&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>
-        <div>{$art.content}</div>
+        <!--<div>{$art.content}</div>-->
+        <div>{php} echo $art->content{/php}</div>
+        <hr>
+        <div class="text-center">
+        {eq name="true" value="$is_fav"}
+        <button class="btn btn-xs btn-warning" type="button" id="fav" onclick="fav('{$art.id}')" ><span class="glyphicon glyphicon-star"> </span>取消</button>
+        {else eq}
+        <button class="btn btn-xs btn-default" type="button" id="fav" onclick="fav('{$art.id}')" ><span class="glyphicon glyphicon-star"> </span>收藏</button>
+        {/eq}
+        {eq name="true" value="$is_like"}
+        <button class="btn btn-xs btn-warning" type="button" id="like" onclick="like('{$art.id}')" ><span class="glyphicon glyphicon-heart"> </span>取消</button>
+        {else eq}
+        <button class="btn btn-xs btn-default" type="button" id="like" onclick="like('{$art.id}')" ><span class="glyphicon glyphicon-heart"> </span>收藏</button>
+        {/eq}
+        </div>
     </div>
 </div>
+<script>
+    function fav(id) {
+        $.ajax({
+            type:'post',
+            url:"{:url('fav')}",
+            data: {
+                'article_id':id,
+            },
+            dataType:'json',
+            success:function (data) {
+                if (data.status == 1){
+                    alert(data.message);
+                    $('#fav').attr('class', 'btn btn-xs btn-warning').html('<span class="glyphicon glyphicon-star"> </span>取消')
+                    // window.location.href = "{:url('index/index/index')}";
+                } else if(data.status == 0) {
+                    alert(data.message);
+                    $('#fav').attr('class', 'btn btn-xs btn-default').html('<span class="glyphicon glyphicon-star"> </span>收藏')
+                    // window.location.href="{:url('register')}";
+                }
+            }
+        })
+    }
+    function like(id) {
+        $.ajax({
+            type:'post',
+            url:"{:url('like')}",
+            data: {
+                'article_id':id,
+            },
+            dataType:'json',
+            success:function (data) {
+                if (data.status == 1){
+                    alert(data.message);
+                    $('#like').attr('class', 'btn btn-xs btn-warning').html('<span class="glyphicon glyphicon-heart"> </span>取消')
+                    // window.location.href = "{:url('index/index/index')}";
+                } else if(data.status == 0) {
+                    alert(data.message);
+                    $('#like').attr('class', 'btn btn-xs btn-default').html('<span class="glyphicon glyphicon-heart"> </span>收藏')
+                    // window.location.href="{:url('register')}";
+                }
+            }
+        })
+    }
+</script>
 {/block}

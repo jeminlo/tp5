@@ -21,13 +21,16 @@ class Article extends Model
     //仅更新时设置
     protected $update = ['update_time'];
 
+    //绑定用户信息表
     public function user()
     {
         return $this->belongsTo('User');
     }
 
+    //绑定文章分类表
     public function articleCategory()
     {
         return $this->belongsTo('ArticleCategory', 'cate_id');
     }
+
 }
