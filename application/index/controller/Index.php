@@ -23,15 +23,18 @@ class Index extends Base
         }
         $this->view->assign('title', $title);
         //文章列表分页显示
-        $db_where = [
-            'status' => 1,
-        ];
+        $db_where[] = ['status', '=', 1];
         if ($cate_id) {
-            $db_where['id'] = $cate_id;
+            $db_where[] = ['id', '=', $cate_id];
+        }
+        $search = Request::param('search');
+        if (!empty($search)) {
+            $db_where[] = ['title', 'like', "%$search%"];
         }
         $artList = Article::where($db_where)
-                ->order('create_time', 'desc')->paginate(1);
+                ->order('create_time', 'desc')->paginate(3);
         $this->view->assign('artList', $artList);
+        $this->view->assign('empty', '<p>没有文章</p>');
         return $this->view->fetch();
     }
 
