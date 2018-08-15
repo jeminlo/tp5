@@ -27,7 +27,7 @@ class Index extends Base
         //文章列表分页显示
         $db_where[] = ['status', '=', 1];
         if ($cate_id) {
-            $db_where[] = ['id', '=', $cate_id];
+            $db_where[] = ['cate_id', '=', $cate_id];
         }
         $search = Request::param('search');
         if (!empty($search)) {
@@ -84,8 +84,11 @@ class Index extends Base
             } else {
                 return $this->error($file->getError);
             }
-            if (Article::create($data)) {
-                $this->success('文章发布成功');
+            if ($result = Article::create($data)) {
+                var_dump($result);
+                var_dump(url('index/index/detail', ['id' => $result->id]));
+                $this->success('文章发布成功', url('index/index/detail', ['id' => $result->id]));
+
             } else {
                 $this->error('文章发布失败');
             }
