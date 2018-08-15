@@ -8,5 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: 流年 <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
+use think\Db;
 // 应用公共文件
+if (!function_exists('getUserName')) {
+    function getUserName($id){
+        return Db::name('user')->where('id', $id)->value('name');
+    }
+}

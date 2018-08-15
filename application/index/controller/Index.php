@@ -5,14 +5,33 @@ namespace app\index\controller;
 use app\common\controller\Base;
 use app\common\model\Article;
 use app\common\model\ArticleCategory;
+use think\Db;
 use think\facade\Request;
 use think\facade\Session;
+use think\Url;
 
 class Index extends Base
 {
     public function index()
     {
-        $this->view->assign('name', 'me');
+        $cate_id = Request::param('cate_id');
+        if ($cate_id) {
+            $result = ArticleCategory::get($cate_id);
+            $title = $result->name;
+        } else {
+            $title = '全部文章';
+        }
+        $this->view->assign('title', $title);
+        //文章列表分页显示
+        $db_where = [
+            'status' => 1,
+        ];
+        if ($cate_id) {
+            $db_where['id'] = $cate_id;
+        }
+        $artList = Article::where($db_where)
+                ->order('create_time', 'desc')->paginate(1);
+        $this->view->assign('artList', $artList);
         return $this->view->fetch();
     }
 
@@ -24,7 +43,10 @@ class Index extends Base
         //2.设置页面标题
         $this->view->assign('title', '发布文章');
         //获取栏目信息
-        $cateList = ArticleCategory::all();
+        $cateList = ArticleCategory::all(function ($query){
+            $query->where('status', 1)->order('sort', 'asc');
+        });
+
         if (count($cateList) > 0) {
             //
             $this->assign('cateList', $cateList);
@@ -44,7 +66,8 @@ class Index extends Base
         $is_validate = $this->validate($data, 'app\common\validate\Article');
         if (true !== $is_validate) {
             //验证失败
-            echo "<script>alert('$is_validate');location.black()</script>";
+            echo "<script>alert('$is_validate'); window.history.go(-1)</script>";
+//            $this->error($is_validate, 'index/index/insert');
         } else {
             $file = Request::file('title_img');
             $info = $file->validate([
@@ -54,7 +77,7 @@ class Index extends Base
             if ($info) {
                 $data['title_img'] = $info->getSaveName();
             } else {
-                $this->error($file->getError);
+                return $this->error($file->getError);
             }
             if (Article::create($data)) {
                 $this->success('文章发布成功');

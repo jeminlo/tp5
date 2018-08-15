@@ -14,7 +14,7 @@ use think\Validate;
 class Article extends Validate
 {
     protected $rule = [
-        'title|标题' => 'require|length:1,20',
+        'title|标题' => 'require|length:1,200',
 //        'title_img|标题图片' => 'require',
 //        'content|文章内容' => 'require',
         'user_id|作者' => 'require',
