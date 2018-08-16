@@ -77,11 +77,12 @@ class User extends Base
 
         //获取当前用户信息
 
-        if ($data['admin_level'] !== '管理员') {
-            $userList = UserModel::where('id', $data['admin_id'])->select();
+        if ($data['admin_level'] === 1) {
+            $map = 1;
         } else {
-            $userList = UserModel::all();
+            $map = ['id' => $data['admin_id']];
         }
+        $userList = UserModel::where($map)->paginate(10);
         //模板赋值
         $this->view->assign([
             'title' => '用户管理',

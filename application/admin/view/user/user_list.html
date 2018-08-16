@@ -9,7 +9,7 @@
         <td>注册时间</td>
         <td>状态</td>
         <td>会员类型</td>
-        <td colspan="2">操作</td>
+        <td>操作</td>
     </tr>
     {volist name="userList" id="user" empty="empty"}
     <tr>
@@ -22,14 +22,17 @@
         <td>{$user->is_admin}</td>
         <td>
             {eq name="$user->id" value="$Think.session.admin_id"}
-            <a href="{:url('admin/user/useredit', ['id' => $user.id])}">UPDATE</a>
+            <a href="{:url('admin/user/useredit', ['id' => $user.id])}">
+                <button class="btn btn-xs btn-success">Edit</button>
+            </a>
             {/eq}
-        </td>
-        <td>
             {neq name="$user->id" value="$Think.session.admin_id"}
-            <a href="{:url('admin/user/userDelete', ['id' => $user->id])}" onclick="return confirm('确认删除?')">DELETE</a>
+            <a href="{:url('admin/user/userDelete', ['id' => $user->id])}" onclick="return confirm('确认删除?')">
+                <button class="btn btn-xs btn-danger">删除</button>
+            </a>
             {/neq}
         </td>
     </tr>
     {/volist}
 </table>
+<div>{$userList|raw}</div>
