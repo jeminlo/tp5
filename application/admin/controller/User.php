@@ -90,4 +90,42 @@ class User extends Base
         ]);
         return $this->view->fetch();
     }
+
+    /**
+     * 用户资料修改页面
+     */
+    public function userEdit()
+    {
+        $userId = Request::param('id');
+        $userInfo = UserModel::where('id', $userId)->find();
+        $this->view->assign([
+            'title' => '编辑用户',
+            'userInfo' => $userInfo,
+        ]);
+        return $this->view->fetch();
+    }
+
+    /**
+     * 存储用户修改资料
+     */
+    public function userUpdate()
+    {
+        $data = Request::param();
+        $id = $data['id'];
+        unset($data['id']);
+        $is_update = UserModel::where('id', $id)->data($data)->update();
+        if ($is_update) {
+            return $this->success('更新成功', 'userList');
+        } else {
+            return $this->error('没有更新');
+        }
+    }
+
+    /**
+     * 删除用户
+     */
+    public function userDelete()
+    {
+
+    }
 }

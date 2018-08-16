@@ -92,6 +92,7 @@ class User extends Base
 
     }
 
+
     public function logout()
     {
 //        Session::delete('user_id');
@@ -99,5 +100,7 @@ class User extends Base
         Session::clear();
         $this->success('退出成功', 'index/index');
     }
+
+
 
 }
