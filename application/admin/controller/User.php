@@ -48,7 +48,7 @@ class User extends Base
             } else {
                 Session::set('admin_id', $result->id);
                 Session::set('admin_name', $result->name);
-                Session::set('admin_level', $result->is_admin);
+                Session::set('admin_level', $result->getData('is_admin'));
                 $this->success('登录成功', 'admin/index/index');
             }
         } else {

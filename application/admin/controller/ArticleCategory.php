@@ -41,7 +41,7 @@ class ArticleCategory extends Base
         $data = Request::param();
         $is_insert = CategoryModel::create($data);
         if ($is_insert) {
-            $this->success('添加成功');
+            $this->success('添加成功', 'CategoryList');
         } else {
             $this->error('添加失败');
         }
@@ -85,7 +85,7 @@ class ArticleCategory extends Base
         unset($data['id']);
         $is_update = CategoryModel::where('id', $id)->update($data);
         if ($is_update) {
-            return $this->success('更新成功');
+            return $this->success('更新成功', 'CategoryList');
         } else {
             $this->error('没有更新');
         }

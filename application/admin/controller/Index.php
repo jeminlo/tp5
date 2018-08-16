@@ -16,7 +16,8 @@ class Index extends Base
     public function index()
     {
         $this->isAdminLogout();
-        return $this->view->fetch();
+        $this->redirect('admin/article/articleList');
+//        return $this->view->fetch();
     }
 
 }

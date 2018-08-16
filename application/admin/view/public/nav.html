@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">{$siteName|default='后台管理'}</a>
+            <a class="navbar-brand" href="#">{$siteName|default='控制面板'}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -23,7 +23,7 @@
                        aria-haspopup="true" aria-expanded="false">{$Think.session.user_name} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <!--<li><a href="{:url('index/insert')}">管理中心</a></li>-->
-                        <li role="separator" class="divider"></li>
+                        <!--<li role="separator" class="divider"></li>-->
                         <li><a href="{:url('user/logout')}">Logout</a></li>
                     </ul>
                 </li>
