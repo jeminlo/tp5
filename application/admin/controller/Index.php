@@ -9,11 +9,14 @@
 namespace app\admin\controller;
 
 
-class Index
+use app\common\controller\Base;
+
+class Index extends Base
 {
     public function index()
     {
-        return __METHOD__;
+        $this->isAdminLogout();
+        return $this->view->fetch();
     }
 
 }

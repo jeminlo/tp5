@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{$title|default='社区问答'}</title>
+   {include file="public:header" /}
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-dm-12">
+            {include file="public/nav"/}
+            <div class="col-md-2">
+                {include file="public/left"/}
+            </div>
+            <div class="col-md-10">
+                {__CONTENT__}
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+</body>
+</html>

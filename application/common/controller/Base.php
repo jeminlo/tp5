@@ -31,12 +31,21 @@ class Base extends Controller
     }
 
     /**
-     * 是否未登录
+     * 前台是否未登录
      */
     public function isLogout()
     {
         if (!Session::has('user_id')) {
             $this->error('你尚未登陆', 'user/login');
+        }
+    }
+    /**
+     * 后台是否未登录
+     */
+    public function isAdminLogout()
+    {
+        if (!Session::has('admin_id')) {
+            $this->error('你尚未登陆', 'admin/user/login');
         }
     }
 

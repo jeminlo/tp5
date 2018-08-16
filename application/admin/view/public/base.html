@@ -8,16 +8,14 @@
     <div class="container">
         <div class="row">
             <div class="col-dm-12">
-                {block name="menu"}
-                <!-- 导航 -->
-                {include file="public/nav" /}
-                {/block}
-                <div class="col-md-8">
-                    {block name="main"}{/block}
-                </div>
-                <div class="col-md-4">
-                    {block name="right"} {include file="public/right"/}{/block}
-                </div>
+                {include file="public/nav"/}
+
+                <div class="col-md-2">
+                        {include file="public/left"/}
+                    </div>
+                    <div class="col-md-10">
+                        {block name="main"}{/block}
+                    </div>
             </div>
         </div>
     </div>

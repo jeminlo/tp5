@@ -57,6 +57,7 @@ class User extends Base
         return $this->view->fetch('login', ['title', '用户登录']);
     }
 
+
     /**
      * 登录验证
      * @return array
@@ -76,8 +77,7 @@ class User extends Base
             }
             $result = UserModel::get(function ($query) use ($data) {
                 $query->where('email', $data['email'])
-                    ->where('password', md5($data['password']))
-                ;
+                    ->where('password', md5($data['password']));
             });
             if (null === $result) {
                 return ['status' => 0, 'message' => '登录失败,请检查邮箱或密码'];
