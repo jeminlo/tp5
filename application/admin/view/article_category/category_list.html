@@ -1,0 +1,29 @@
+{layout name="public:layout"/}
+<h4 class="text-center text-success">分类列表</h4>
+<table class="table table-default table-hover text-center">
+    <tr>
+        <td>ID</td>
+        <td>栏目名称</td>
+        <td>排序</td>
+        <td>状态</td>
+        <td>创建时间</td>
+        <td>操作</td>
+    </tr>
+    {volist name="cateList" id="cate" empty="empty"}
+    <tr>
+        <td>{$cate->id}</td>
+        <td>{$cate->name}</td>
+        <td>{$cate->sort}</td>
+        <td>{$cate->status}</td>
+        <td>{$cate->create_time}</td>
+        <td>
+            <a href="{:url('admin/user/useredit', ['id' => $cate.id])}">
+                <button class="btn btn-xs btn-success">UPDATE</button>
+            </a>
+            <a href="{:url('admin/user/userDelete', ['id' => $cate->id])}" onclick="return confirm('确认删除?')">
+                <button type="button" class="btn btn-xs btn-danger">删除</button>
+            </a>
+        </td>
+    </tr>
+    {/volist}
+</table>
