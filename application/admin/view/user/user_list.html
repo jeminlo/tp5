@@ -27,7 +27,7 @@
         </td>
         <td>
             {neq name="$user->id" value="$Think.session.admin_id"}
-            <a href="">DELETE</a>
+            <a href="{:url('admin/user/userDelete', ['id' => $user->id])}" onclick="return confirm('确认删除?')">DELETE</a>
             {/neq}
         </td>
     </tr>

@@ -126,6 +126,13 @@ class User extends Base
      */
     public function userDelete()
     {
+        $userId = Request::param('id');
+        $is_delete = UserModel::where('id', $userId)->delete();
+        if ($is_delete) {
+            return $this->success('删除成功');
+        } else {
+            return $this->error('删除失败');
+        }
 
     }
 }
