@@ -17,7 +17,9 @@
             <ul class="nav navbar-nav">
                 <li {empty name="$Request.param.cate_id"}class="active"{/empty}><a href="{:url('index/index/index')}">首页 <span class="sr-only">(current)</span></a></li>
                 {volist name="cateList" id="cate"}
+                {eq name="1" value="$cate->getData('status')"}
                 <li {eq name="$cate.id" value="$Request.param.cate_id"} class="active" {/eq}><a href="{:url('index/index', ['cate_id'=>$cate.id])}">{$cate.name}</a></li>
+                {/eq}
                 {/volist}
             </ul>
             <ul class="nav navbar-nav navbar-right">
