@@ -1,5 +1,8 @@
 {layout name="public:layout"/}
 <h4 class="text-center text-success">分类列表</h4>
+<div style="margin: 10px 0px">
+    <a href="{:url('add')}"><button class="btn btn-sm btn-success">添加</button></a>
+</div>
 <table class="table table-default table-hover text-center">
     <tr>
         <td>ID</td>
@@ -17,10 +20,10 @@
         <td>{$cate->status}</td>
         <td>{$cate->create_time}</td>
         <td>
-            <a href="{:url('admin/user/useredit', ['id' => $cate.id])}">
+            <a href="{:url('admin/ArticleCategory/edit', ['id' => $cate.id])}">
                 <button class="btn btn-xs btn-success">UPDATE</button>
             </a>
-            <a href="{:url('admin/user/userDelete', ['id' => $cate->id])}" onclick="return confirm('确认删除?')">
+            <a href="{:url('admin/ArticleCategory/delete', ['id' => $cate->id])}" onclick="return confirm('确认删除?')">
                 <button type="button" class="btn btn-xs btn-danger">删除</button>
             </a>
         </td>

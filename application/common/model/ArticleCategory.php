@@ -14,6 +14,8 @@ use think\Model;
 class ArticleCategory extends Model
 {
     protected $autoWriteTimestamp = true;
+    protected $createTime = 'create_time';
+    protected $updateTime = 'update_time';
 
     //开启自动设置
     protected $auto = [];
