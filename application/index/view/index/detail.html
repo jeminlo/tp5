@@ -12,8 +12,8 @@
                 阅读量:{$art.pv}&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>
-        <!--<div>{$art.content}</div>-->
-        <div>{php} echo $art->content{/php}</div>
+        <div>{$art.content|raw}</div>
+        <!--<div>{php} echo $art->content{/php}</div>-->
         <hr>
         <div class="text-center">
         {eq name="true" value="$is_fav"}
@@ -40,11 +40,11 @@
             dataType:'json',
             success:function (data) {
                 if (data.status == 1){
-                    alert(data.message);
+                    // alert(data.message);
                     $('#fav').attr('class', 'btn btn-xs btn-warning').html('<span class="glyphicon glyphicon-star"> </span>取消')
                     // window.location.href = "{:url('index/index/index')}";
                 } else if(data.status == 0) {
-                    alert(data.message);
+                    // alert(data.message);
                     $('#fav').attr('class', 'btn btn-xs btn-default').html('<span class="glyphicon glyphicon-star"> </span>收藏')
                     // window.location.href="{:url('register')}";
                 }
@@ -61,11 +61,11 @@
             dataType:'json',
             success:function (data) {
                 if (data.status == 1){
-                    alert(data.message);
+                    // alert(data.message);
                     $('#like').attr('class', 'btn btn-xs btn-warning').html('<span class="glyphicon glyphicon-heart"> </span>取消')
                     // window.location.href = "{:url('index/index/index')}";
                 } else if(data.status == 0) {
-                    alert(data.message);
+                    // alert(data.message);
                     $('#like').attr('class', 'btn btn-xs btn-default').html('<span class="glyphicon glyphicon-heart"> </span>收藏')
                     // window.location.href="{:url('register')}";
                 }

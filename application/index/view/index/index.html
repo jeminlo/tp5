@@ -6,16 +6,16 @@
 <div class="row">
     {volist name="artList" id="art" empty="$empty"}
     <div class="row col-md-12" style="margin: 10px 0px">
-        <div class="col-md-2">
-            <img src="__PUBLIC__/upload/{$art.title_img}" alt="" class="img-rounded" style="width: 100px;height: 85px">
+        <div class="col-md-3">
+            <img src="__PUBLIC__/upload/{$art.title_img}" alt="" class="img-rounded" style="width: 160px;height: 120px">
         </div>
-        <div class="col-md-10">
-            <h4><a href="{:url('detail', ['id' => $art.id])}">{$art.title}</a></h4>
+        <div class="col-md-9">
+            <h5><a href="{:url('detail', ['id' => $art.id])}">{$art.title}</a></h5>
             <p>作者:{$art.user.name}&nbsp;&nbsp;&nbsp;&nbsp;
                 时间:{$art.create_time}&nbsp;&nbsp;&nbsp;&nbsp;
                 阅读量:{$art.pv}&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
-            <div>{$art.content|mb_substr=0,50,'utf-8'}</div>
+            <div>{$art.synopsis|mb_substr=0,100,'utf-8'}</div>
         </div>
     </div>
     {/volist}

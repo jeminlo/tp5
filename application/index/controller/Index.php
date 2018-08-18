@@ -85,10 +85,7 @@ class Index extends Base
                 return $this->error($file->getError);
             }
             if ($result = Article::create($data)) {
-                var_dump($result);
-                var_dump(url('index/index/detail', ['id' => $result->id]));
                 $this->success('文章发布成功', url('index/index/detail', ['id' => $result->id]));
-
             } else {
                 $this->error('文章发布失败');
             }
