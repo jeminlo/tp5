@@ -26,10 +26,10 @@
         <td>{$article->pv}</td>
         <td>{$article->create_time}</td>
         <td>
-            <a href="{:url('admin/ArticleCategory/edit', ['id' => $article.id])}">
+            <a href="{:url('edit', ['id' => $article.id])}">
                 <button class="btn btn-xs btn-success">UPDATE</button>
             </a>
-            <a href="{:url('admin/ArticleCategory/delete', ['id' => $article->id])}" onclick="return confirm('确认删除?')">
+            <a href="{:url('delete', ['id' => $article->id])}" onclick="return confirm('确认删除?')">
                 <button type="button" class="btn btn-xs btn-danger">删除</button>
             </a>
         </td>
