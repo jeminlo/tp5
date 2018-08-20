@@ -1,4 +1,4 @@
-<?php /*a:6:{s:68:"C:\xampp\htdocs\tp5\application\admin\view\article\article_list.html";i:1534572832;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\layout.html";i:1534389138;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\admin\view\public\nav.html";i:1534567512;s:59:"C:\xampp\htdocs\tp5\application\admin\view\public\left.html";i:1534654317;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\footer.html";i:1534318060;}*/ ?>
+<?php /*a:6:{s:58:"C:\xampp\htdocs\tp5\application\admin\view\site\index.html";i:1534747976;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\layout.html";i:1534389138;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\admin\view\public\nav.html";i:1534567512;s:59:"C:\xampp\htdocs\tp5\application\admin\view\public\left.html";i:1534654317;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\footer.html";i:1534318060;}*/ ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -72,45 +72,36 @@
             </div>
             <div class="col-md-10">
                 
-<h4 class="text-center text-success">文章列表</h4>
-<div style="margin: 10px 0px">
-    <a href="<?php echo url('index/index/insert'); ?>" target="_blank"><button class="btn btn-sm btn-success">添加</button></a>
-</div>
-<table class="table table-default table-hover ">
-    <tr class="text-center">
-        <td>ID</td>
-        <td>标题</td>
-        <td>栏目</td>
-        <?php if(app('session')->get('admin_level') == '1'): ?>
-        <td>作者</td>
-        <?php endif; ?>
-        <td>阅读量</td>
-        <td>创建时间</td>
-        <td>操作</td>
-    </tr>
-    <?php if(is_array($articleList) || $articleList instanceof \think\Collection || $articleList instanceof \think\Paginator): $i = 0; $__LIST__ = $articleList;if( count($__LIST__)==0 ) : echo "empty" ;else: foreach($__LIST__ as $key=>$article): $mod = ($i % 2 );++$i;?>
-    <tr class="text-left">
-        <td><?php echo htmlentities($article->id); ?></td>
-        <td><a href="<?php echo url('index/index/detail', ['id' => $article->id]); ?>" target="_blank"><?php echo htmlentities(mb_substr($article->title,0,20,'utf-8')); ?>...</a></td>
-        <td><?php echo htmlentities($article->ArticleCategory->name); ?></td>
-        <?php if(app('session')->get('admin_level') == '1'): ?>
-        <td><?php echo htmlentities($article->User->name); ?></td>
-        <?php endif; ?>
-        <td><?php echo htmlentities($article->pv); ?></td>
-        <td><?php echo htmlentities($article->create_time); ?></td>
-        <td>
-            <a href="<?php echo url('edit', ['id' => $article['id']]); ?>">
-                <button class="btn btn-xs btn-success">UPDATE</button>
-            </a>
-            <a href="<?php echo url('delete', ['id' => $article->id]); ?>" onclick="return confirm('确认删除?')">
-                <button type="button" class="btn btn-xs btn-danger">删除</button>
-            </a>
-        </td>
-    </tr>
-    <?php endforeach; endif; else: echo "empty" ;endif; ?>
-</table>
-<div class="text-center"><?php echo $articleList; ?></div>
-
+<h4 class="text-center text-danger">站点管理</h4>
+<form action="<?php echo url('doEdit'); ?>" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="name" class="control-label">站点名称</label>
+            <input type="text" name="name" id="name" value="<?php echo htmlentities($siteInfo['name']); ?>" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">站点状态</label>
+        <div>
+        <label class="radio-inline">
+            <input type="radio" required name="is_open"  value="1"  <?php if(1 == $siteInfo->getData('is_open')): ?>checked<?php endif; ?>>开启
+        </label>
+        <label class="radio-inline">
+            <input type="radio" required name="is_open" value="0" <?php if(0 == $siteInfo->getData('is_open')): ?>checked<?php endif; ?>>关闭
+        </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="keywords" class="control-label">关键字</label>
+            <input type="text" name="keywords" id="keywords" value="<?php echo htmlentities($siteInfo['keywords']); ?>" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="content" class="control-label">描述</label>
+        <textarea name="content" id="content" cols="30" rows="3" class="form-control"><?php echo htmlentities($siteInfo['content']); ?></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" name="id" value="<?php echo htmlentities($siteInfo['id']); ?>">
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</form>
             </div>
         </div>
     </div>
