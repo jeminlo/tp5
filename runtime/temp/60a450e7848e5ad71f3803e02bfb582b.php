@@ -1,4 +1,4 @@
-<?php /*a:6:{s:62:"C:\xampp\htdocs\tp5\application\admin\view\user\user_list.html";i:1534413587;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\layout.html";i:1534389138;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\admin\view\public\nav.html";i:1534567512;s:59:"C:\xampp\htdocs\tp5\application\admin\view\public\left.html";i:1534411970;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\footer.html";i:1534318060;}*/ ?>
+<?php /*a:6:{s:62:"C:\xampp\htdocs\tp5\application\admin\view\user\user_list.html";i:1534413587;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\layout.html";i:1534389138;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\admin\view\public\nav.html";i:1534567512;s:59:"C:\xampp\htdocs\tp5\application\admin\view\public\left.html";i:1534654317;s:61:"C:\xampp\htdocs\tp5\application\admin\view\public\footer.html";i:1534318060;}*/ ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -57,7 +57,7 @@
                 <?php if(app('session')->get('admin_level') == '1'): ?>
 <ul class="nav nav-pills nav-stacked">
     <li class="nav-header h3">系统管理</li>
-    <li><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;网站管理</span></a></li>
+    <li><a href="<?php echo url('Site/index'); ?>"><span class="glyphicon glyphicon-cog">&nbsp;网站管理</span></a></li>
 </ul>
 <?php endif; ?>
 <ul class="nav nav-pills nav-stacked">

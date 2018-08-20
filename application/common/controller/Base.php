@@ -6,7 +6,9 @@
 namespace app\common\controller;
 
 use app\common\model\ArticleCategory;
+use app\common\model\Site;
 use think\Controller;
+use think\facade\Request;
 use think\Facade\Session;
 
 class Base extends Controller
@@ -18,6 +20,7 @@ class Base extends Controller
     protected function initialize()
     {
         $this->showNav();
+        $this->is_open();
     }
 
     /**
@@ -60,4 +63,11 @@ class Base extends Controller
         $this->view->assign('cateList', $cateList);
     }
 
+    public function is_open(){
+        $is_open = Site::where(1)->value('is_open');
+        if ($is_open ==0 && Request::module() != 'admin') {
+            $info = "<body style='background: #333;text-align: center'><div style='color: white'>站点维护中...</div></body>";
+            exit($info);
+        }
+    }
 }
