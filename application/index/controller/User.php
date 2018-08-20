@@ -17,6 +17,7 @@ class User extends Base
 {
     public function register()
     {
+        $this->is_reg();
         $this->assign('title', '用户注册');
         return $this->fetch();
     }

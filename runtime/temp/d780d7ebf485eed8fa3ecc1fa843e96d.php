@@ -1,4 +1,4 @@
-<?php /*a:6:{s:59:"C:\xampp\htdocs\tp5\application\index\view\index\index.html";i:1534561563;s:59:"C:\xampp\htdocs\tp5\application\index\view\public\base.html";i:1534325207;s:61:"C:\xampp\htdocs\tp5\application\index\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\index\view\public\nav.html";i:1534569982;s:60:"C:\xampp\htdocs\tp5\application\index\view\public\right.html";i:1534324979;s:61:"C:\xampp\htdocs\tp5\application\index\view\public\footer.html";i:1534318060;}*/ ?>
+<?php /*a:6:{s:59:"C:\xampp\htdocs\tp5\application\index\view\index\index.html";i:1534561563;s:59:"C:\xampp\htdocs\tp5\application\index\view\public\base.html";i:1534325207;s:61:"C:\xampp\htdocs\tp5\application\index\view\public\header.html";i:1534218633;s:58:"C:\xampp\htdocs\tp5\application\index\view\public\nav.html";i:1534569982;s:60:"C:\xampp\htdocs\tp5\application\index\view\public\right.html";i:1534750757;s:61:"C:\xampp\htdocs\tp5\application\index\view\public\footer.html";i:1534318060;}*/ ?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -91,15 +91,13 @@
                 </div>
                 <div class="col-md-4">
                      <div class="page-header">
-    <h2>热门问答</h2>
+    <h2>热门文章</h2>
 </div>
 <div class="list-group">
-    <a href="#" class="list-group-item active">我是最新问答</a>
-    <a href="" class="list-group-item">我是最新问答</a>
-    <a href="" class="list-group-item">我是最新问答</a>
-    <a href="" class="list-group-item">我是最新问答</a>
-    <a href="" class="list-group-item">我是最新问答</a>
-    <a href="" class="list-group-item">我是最新问答</a>
+    <a href="#" class="list-group-item >热门文章</a>
+    <?php if(is_array($hotList) || $hotList instanceof \think\Collection || $hotList instanceof \think\Paginator): $i = 0; $__LIST__ = $hotList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$host): $mod = ($i % 2 );++$i;?>
+    <a href="<?php echo url('index/detail', ['id' => $host['id']]); ?>" target="_blank" class="list-group-item"><?php echo htmlentities(mb_substr($host['title'],0,25,'utf-8')); ?></a>
+    <?php endforeach; endif; else: echo "" ;endif; ?>
 </div>
 
                 </div>

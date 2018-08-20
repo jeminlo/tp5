@@ -6,23 +6,34 @@
             <input type="text" name="name" id="name" value="{$siteInfo.name}" class="form-control">
     </div>
     <div class="form-group">
-        <label for="" class="control-label">站点状态</label>
-        <div>
-        <label class="radio-inline">
-            <input type="radio" required name="is_open"  value="1"  {eq name="1" value="$siteInfo->getData('is_open')"}checked{/eq}>开启
-        </label>
-        <label class="radio-inline">
-            <input type="radio" required name="is_open" value="0" {eq name="0" value="$siteInfo->getData('is_open')"}checked{/eq}>关闭
-        </label>
-        </div>
-    </div>
-    <div class="form-group">
         <label for="keywords" class="control-label">关键字</label>
             <input type="text" name="keywords" id="keywords" value="{$siteInfo.keywords}" class="form-control">
     </div>
     <div class="form-group">
         <label for="content" class="control-label">描述</label>
         <textarea name="content" id="content" cols="30" rows="3" class="form-control">{$siteInfo.content}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">站点状态</label>
+        <div>
+            <label class="radio-inline">
+                <input type="radio" required name="is_open"  value="1"  {eq name="1" value="$siteInfo->getData('is_open')"}checked{/eq}>开启
+            </label>
+            <label class="radio-inline">
+                <input type="radio" required name="is_open" value="0" {eq name="0" value="$siteInfo->getData('is_open')"}checked{/eq}>关闭
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">注册状态</label>
+        <div>
+            <label class="radio-inline">
+                <input type="radio" required name="is_reg"  value="1"  {eq name="1" value="$siteInfo->getData('is_reg')"}checked{/eq}>开启
+            </label>
+            <label class="radio-inline">
+                <input type="radio" required name="is_reg" value="0" {eq name="0" value="$siteInfo->getData('is_reg')"}checked{/eq}>关闭
+            </label>
+        </div>
     </div>
     <div class="form-group">
         <input type="hidden" name="id" value="{$siteInfo.id}">
